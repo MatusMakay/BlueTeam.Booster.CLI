@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>cce861f4-627e-49bf-a023-c6b8739aab67</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Init\UseCases.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Options\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Init\UseCases.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bc.CyberSec.Detection.Booster.CLI.Core\Bc.CyberSec.Detection.Booster.CLI.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Init\ItSrc-UseCase.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

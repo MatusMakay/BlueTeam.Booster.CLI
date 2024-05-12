@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>Bc.CyberSec.Detection.Booster.CLI.Application</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>7fbc798c-4c1c-4317-a99e-f540be7dd251</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Infrastructure\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.102.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bc.CyberSec.Detection.Booster.Api.Client\Bc.CyberSec.Detection.Booster.Api.Client.csproj" />
+  </ItemGroup>
+
+</Project>
