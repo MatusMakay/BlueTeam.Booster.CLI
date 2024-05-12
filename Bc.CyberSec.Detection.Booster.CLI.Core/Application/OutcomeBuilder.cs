@@ -103,7 +103,7 @@ public static class OutcomeBuilder
         return outcome.ToString();
     }
 
-    public static string UseCasesActivated(List<string> identifiers)
+    public static string UseCasesActivated(List<int> identifiers)
     {
         var outcome = "";
         foreach (var identifier in identifiers)
@@ -114,7 +114,7 @@ public static class OutcomeBuilder
         return outcome;
     }
 
-    public static string UseCasesDeactivated(List<string> identifiers)
+    public static string UseCasesDeactivated(List<int> identifiers)
     {
         var outcome = "";
         foreach (var identifier in identifiers)

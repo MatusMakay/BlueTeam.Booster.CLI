@@ -7,7 +7,7 @@ namespace Bc.CyberSec.Detection.Booster.CLI.Application.Application.Commands;
 
 public class DeactivateCommand : Command, IExecuteCommand
 {
-    private readonly IExecuteCommand<List<string>>? _range;
+    private readonly IExecuteCommand<List<int>>? _range;
 
     public DeactivateCommand(string input, IDetectionBoosterApi api) : base(input, api)
     {
@@ -15,7 +15,7 @@ public class DeactivateCommand : Command, IExecuteCommand
         _range = null;
     }
 
-    public DeactivateCommand(IDetectionBoosterApi api, IExecuteCommand<List<string>>? range) : base(api)
+    public DeactivateCommand(IDetectionBoosterApi api, IExecuteCommand<List<int>>? range) : base(api)
     {
         Priority = 2;
         _range = range;
@@ -31,9 +31,9 @@ public class DeactivateCommand : Command, IExecuteCommand
     {
         try
         {
-            var identifiers = _range == null ? InputParser.Parse(Input).Select(x => $"UC{x}") : _range.GetOutcome();
-            Api.DeactivateUseCase(identifiers.ToList());
-            Outcome = OutcomeBuilder.UseCasesDeactivated(identifiers.ToList());
+            var identifiers = _range == null ? InputParser.Parse(Input) : _range.GetOutcome();
+            Api.DeactivateUseCase(identifiers);
+            Outcome = OutcomeBuilder.UseCasesDeactivated(identifiers);
         }
         catch (ApplicationException e)
         {

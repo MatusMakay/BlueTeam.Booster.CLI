@@ -3,7 +3,7 @@ using Bc.CyberSec.Detection.Booster.CLI.Application.Application.Commands.Base;
 
 namespace Bc.CyberSec.Detection.Booster.CLI.Application.Application.Commands;
 
-public class RangeCommand : Command, IExecuteCommand<List<string>>
+public class RangeCommand : Command, IExecuteCommand<List<int>>
 {
 
     public RangeCommand(string input, IDetectionBoosterApi api) : base(input, api)
@@ -15,8 +15,8 @@ public class RangeCommand : Command, IExecuteCommand<List<string>>
         throw new NotImplementedException();
     }
 
-    public override List<string> GetOutcome()
+    public override List<int> GetOutcome()
     {
-        return InputParser.Range(Input).Select(x => $"UC{x}").ToList();
+        return InputParser.Range(Input).Select(x => x).ToList();
     }
 }
