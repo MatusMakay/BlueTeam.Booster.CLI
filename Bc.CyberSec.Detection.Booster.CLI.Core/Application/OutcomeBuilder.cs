@@ -66,7 +66,7 @@ public static class OutcomeBuilder
                 ? $"   - Mnemonics: {mnemonicString}{Environment.NewLine}"
                 : $"{Environment.NewLine}";
 
-            outcome.AppendLine($"UC{useCaseCreateDto.UseCaseIdentifier} was created. Details:");
+            outcome.AppendLine($"{useCaseCreateDto.UseCaseIdentifier} was created. Details:");
             outcome.AppendLine($"   - Name: {useCaseCreateDto.Name}");
             outcome.AppendLine($"   - Mitre Attack Id: {useCaseCreateDto.MitreAttackId}");
             outcome.AppendLine($"   - Kibana Rule Id: {useCaseCreateDto.KibanaRuleId}");

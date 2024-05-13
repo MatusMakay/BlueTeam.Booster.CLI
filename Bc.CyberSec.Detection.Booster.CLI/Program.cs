@@ -21,8 +21,6 @@ public  class Program
             args = new string[] { "--help" };
         }
 
-        args = new[] { "-a", "2" };
-
         Parser.Default.ParseArguments<Options.Options>(args)
             .WithParsed(options =>
             {

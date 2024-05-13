@@ -22,17 +22,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Init\UseCases.xlsx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Bc.CyberSec.Detection.Booster.CLI.Core\Bc.CyberSec.Detection.Booster.CLI.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Init\ItSrc-UseCase.xlsx">
+    <None Update="Init\UseCases.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
