@@ -32,13 +32,13 @@ The Init directory contains initialization files necessary for the application. 
 Initialize use cases by running:
 
 ``` Powershell
-.\Bc.CyberSec.Detection.Booster.CLI.exe -i ./Init/UseCaseFinal.xlsx
+.\Bc.CyberSec.Detection.Booster.CLI.exe -i ./Init/UseCases.xlsx
 10UC was created.
 ``` 
 For a detailed output, execute with the -t switch:
 
 ``` Powershell
-.\Bc.CyberSec.Detection.Booster.CLI.exe -i ./Init/UseCaseFinal.xlsx -t
+.\Bc.CyberSec.Detection.Booster.CLI.exe -i ./Init/UseCases.xlsx -t
 UC1 was created. Details:
    - Name: CyberSec.Booster: ARP spoofing
    - Mitre Attack Id: T1557.002
