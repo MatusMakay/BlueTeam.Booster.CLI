@@ -8,8 +8,13 @@ Use the following commands in PowerShell to clone and initialize the CLI applica
 git clone git@github.com:MatusMakay/BlueTeam.Booster.CLI.git
 cd BlueTeam.Booster.CLI
 cd Bc.CyberSec.Detection.Booster.CLI
+```
+Modify the `init-Windows.ps1` script to include the API key value, which is available in the digital version of my bachelor's thesis under `BP_MatusMakay/Autorizácia`.
+
+``` Powershell
 PowerShell -ExecutionPolicy Bypass -File .\init-Windows.ps1
 ```
+
 Restart your computer or close the terminal to ensure that the environment variables are properly set.
 
 Next, publish and execute the application:
