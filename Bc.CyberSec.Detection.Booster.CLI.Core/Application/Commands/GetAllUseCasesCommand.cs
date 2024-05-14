@@ -27,7 +27,7 @@ public class GetAllUseCasesCommand : Command, IExecuteCommand<string>
     public override void Execute()
     {
         var useCases = _api.GetAllUseCases();
-        Outcome = DetailedOutput ? OutcomeBuilder.GetAllUseCases(useCases) : OutcomeBuilder.GetAllUseCases(useCases);
+        Outcome = DetailedOutput ? OutcomeBuilder.PrintUseCasesDetailed(useCases) : OutcomeBuilder.PrintUseCases(useCases);
     }
 
     public override string GetOutcome()

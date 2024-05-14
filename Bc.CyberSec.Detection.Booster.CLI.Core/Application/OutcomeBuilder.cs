@@ -1,47 +1,29 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using Bc.CyberSec.Detection.Booster.Api.Client.Dto.SyslogNgConfigurator;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Bc.CyberSec.Detection.Booster.CLI.Application.Application;
 
 public static class OutcomeBuilder
 {
-    public static string GetActiveUseCases(List<UseCaseGetDto> useCaseGetDtos)
-    {
-        if (useCaseGetDtos.Count == 0)
-        {
-            return "No active use cases found";
-        }
-
-        var outcome = "";
-        foreach (var useCaseGetDto in useCaseGetDtos)
-        {
-            outcome += @$"UC{useCaseGetDto.UseCaseIdentifier} is active {Environment.NewLine}";
-        }
-
-        return outcome;
-    }
-
-    public static string GetInactiveUseCases(List<UseCaseGetDto> useCaseGetDtos)
-    {
-        if (useCaseGetDtos.Count == 0)
-        {
-            return "No inactive use cases found";
-        }
-
-        var outcome = "";
-        foreach (var useCaseGetDto in useCaseGetDtos)
-        {
-            outcome += @$"UC{useCaseGetDto.UseCaseIdentifier} is inactive {Environment.NewLine}";
-        }
-        return outcome;
-    }
-
     public static string Error(string errorMessage)
     {
         return $@"
             Error occurred while processing the request. 
             Message: {errorMessage}  
         ";
+    }
+
+    public static string PrintUseCaseState(List<int> identifiers, bool activated)
+    {
+        var outcome = "";
+        var activatedString = activated ? "activated" : "deactivated";
+        foreach (var identifier in identifiers)
+        {
+            outcome += @$"UC{identifier} was {activatedString}. {Environment.NewLine}";
+        }
+        return outcome;
     }
 
     public static string UseCaseCreated(List<UseCaseCreateDto> useCase)
@@ -76,7 +58,7 @@ public static class OutcomeBuilder
         return outcome.ToString();
     }
 
-    public static string GetAllUseCases(List<UseCaseGetDto> useCases)
+    public static string PrintUseCasesDetailed(List<UseCaseGetDto> useCases)
     {
         var outcome = new StringBuilder();
         foreach (var useCaseCreateDto in useCases)
@@ -91,36 +73,41 @@ public static class OutcomeBuilder
                 ? $"   - Mnemonics: {mnemonicString}{Environment.NewLine}"
                 : $"{Environment.NewLine}";
 
-            var isActive = useCaseCreateDto.IsActive ? "active" : "inactive";
-
-            outcome.AppendLine($"UC{useCaseCreateDto.UseCaseIdentifier} is {isActive}. Details:");
-            outcome.AppendLine($"   - Name: {useCaseCreateDto.Name}");
-            outcome.AppendLine($"   - Mitre Attack Id: {useCaseCreateDto.MitreAttackId}");
-            outcome.AppendLine($"   - Kibana Rule Id: {useCaseCreateDto.KibanaRuleId}");
-            outcome.AppendLine($"{outcomeMnemonic}");
+            AddDetailedUseCaseDescription(useCaseCreateDto, outcome, outcomeMnemonic);
+            
         }
 
         return outcome.ToString();
     }
 
-    public static string UseCasesActivated(List<int> identifiers)
+    public static string PrintUseCases(List<UseCaseGetDto> useCases)
     {
-        var outcome = "";
-        foreach (var identifier in identifiers)
+        var outcome = new StringBuilder();
+        foreach (var useCaseCreateDto in useCases)
         {
-            outcome += @$"UC{identifier} was activated. {Environment.NewLine}";
+
+            AddUseCaseDescription(useCaseCreateDto, outcome);
         }
 
-        return outcome;
+        return outcome.ToString();
     }
 
-    public static string UseCasesDeactivated(List<int> identifiers)
+    private static void AddDetailedUseCaseDescription(UseCaseGetDto dto, StringBuilder builder, string outcomeMnemonic)
     {
-        var outcome = "";
-        foreach (var identifier in identifiers)
-        {
-            outcome += @$"UC{identifier} was deactivated. {Environment.NewLine}";
-        }
-        return outcome;
+        var isActive = dto.IsActive ? "active" : "inactive";
+
+        builder.AppendLine($"{dto.UseCaseIdentifier} is {isActive}. Details:");
+        builder.AppendLine($"   - Name: {dto.Name}");
+        builder.AppendLine($"   - Mitre Attack Id: {dto.MitreAttackId}");
+        builder.AppendLine($"   - Kibana Rule Id: {dto.KibanaRuleId}");
+        builder.AppendLine($"{outcomeMnemonic}");
     }
+
+    private static void AddUseCaseDescription(UseCaseGetDto dto, StringBuilder builder)
+    {
+        var isActive = dto.IsActive ? "active" : "inactive";
+        builder.AppendLine($"{dto.UseCaseIdentifier} is {isActive}. Name:");
+        builder.AppendLine($"   - {dto.Name}");
+    }
+
 }

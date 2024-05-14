@@ -7,6 +7,8 @@ namespace Bc.CyberSec.Detection.Booster.CLI.Application.Application.Commands;
 public class ActivateCommand : Command, IExecuteCommand
 {
     private readonly IExecuteCommand<List<int>>? _range;
+    private bool Activated => true;
+
     public ActivateCommand(string input, IDetectionBoosterApi api) : base(input, api)
     {
         Priority = 2;
@@ -28,6 +30,6 @@ public class ActivateCommand : Command, IExecuteCommand
     {
         var identifiers = _range == null ? InputParser.Parse(Input) : _range.GetOutcome();
         Api.ActivateUseCase(identifiers);
-        Outcome = OutcomeBuilder.UseCasesActivated(identifiers.ToList());
+        Outcome = OutcomeBuilder.PrintUseCaseState(identifiers, Activated);
     }
 }

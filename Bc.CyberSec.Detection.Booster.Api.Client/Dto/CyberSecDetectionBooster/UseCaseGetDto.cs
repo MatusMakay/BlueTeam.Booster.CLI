@@ -10,7 +10,7 @@ public class UseCaseGetDto
     [JsonPropertyName("kibanaRuleId")]
     public Guid? KibanaRuleId { get; set; }
 
-    [JsonPropertyName("id")]
+    [JsonPropertyName("useCaseIdentitifier")]
     public string? UseCaseIdentifier { get; set; }
 
     [JsonPropertyName("mitreAttackId")]

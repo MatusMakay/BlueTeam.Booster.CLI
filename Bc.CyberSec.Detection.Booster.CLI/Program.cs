@@ -34,12 +34,12 @@ public  class Program
 
                 if (OptionsHandler.GetActiveOption(args))
                 {
-                    commandExec.Add(new GetActiveCommand(api));
+                    commandExec.Add(new GetActiveCommand(api, detailed));
                 }
 
                 if (OptionsHandler.GetInactiveOption(args))
                 {
-                    commandExec.Add(new GetInactiveCommand(api));
+                    commandExec.Add(new GetDeactivatedCommand(api, detailed));
                 }
 
                 if (OptionsHandler.GetAllUseCases(args))

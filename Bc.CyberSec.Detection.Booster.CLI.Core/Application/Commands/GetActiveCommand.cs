@@ -8,9 +8,13 @@ namespace Bc.CyberSec.Detection.Booster.CLI.Application.Application.Commands;
 public class GetActiveCommand : Command, IExecuteCommand
 {
     private List<UseCaseGetDto> _useCaseGetDtos;
-    public GetActiveCommand(IDetectionBoosterApi api) : base(api)
+    private bool Detailed { get; set; }
+    private bool IsActive => true;
+
+    public GetActiveCommand(IDetectionBoosterApi api, bool detailedOutput) : base(api)
     {
         Priority = 4;
+        Detailed = detailedOutput;
     }
 
     public override string GetOutcome()
@@ -23,7 +27,7 @@ public class GetActiveCommand : Command, IExecuteCommand
         try
         {
             _useCaseGetDtos = Api.GetActiveUseCases();
-            Outcome = OutcomeBuilder.GetActiveUseCases(_useCaseGetDtos);
+            Outcome = Detailed ? OutcomeBuilder.PrintUseCasesDetailed(_useCaseGetDtos) : OutcomeBuilder.PrintUseCases(_useCaseGetDtos);
         }
         catch (ApplicationException e)
         {

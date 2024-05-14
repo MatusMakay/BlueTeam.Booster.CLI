@@ -8,6 +8,7 @@ namespace Bc.CyberSec.Detection.Booster.CLI.Application.Application.Commands;
 public class DeactivateCommand : Command, IExecuteCommand
 {
     private readonly IExecuteCommand<List<int>>? _range;
+    private bool Activated => false;
 
     public DeactivateCommand(string input, IDetectionBoosterApi api) : base(input, api)
     {
@@ -20,7 +21,6 @@ public class DeactivateCommand : Command, IExecuteCommand
         Priority = 2;
         _range = range;
     }
-
    
     public override string GetOutcome()
     {
@@ -33,7 +33,7 @@ public class DeactivateCommand : Command, IExecuteCommand
         {
             var identifiers = _range == null ? InputParser.Parse(Input) : _range.GetOutcome();
             Api.DeactivateUseCase(identifiers);
-            Outcome = OutcomeBuilder.UseCasesDeactivated(identifiers);
+            Outcome = OutcomeBuilder.PrintUseCaseState(identifiers, Activated);
         }
         catch (ApplicationException e)
         {
