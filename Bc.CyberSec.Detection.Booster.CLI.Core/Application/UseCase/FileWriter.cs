@@ -23,13 +23,14 @@ public static class FileWriter
 
         foreach (var useCase in data)
         {
+            var active = useCase.IsActive ? "Aktivovaný" : "Neaktivovaný";
             if (useCase.Mnemonics != null)
             {
-                writer.WriteLine($"{useCase.Name};{useCase.MitreAttackId};{string.Join(" ", useCase.Mnemonics)};{useCase.KibanaRuleId}");
+                writer.WriteLine($"{useCase.Name};{active};{useCase.MitreAttackId};{string.Join(" ", useCase.Mnemonics)};{useCase.KibanaRuleId}");
             }
             else
             {
-                writer.WriteLine($"{useCase.Name};{useCase.MitreAttackId};;{useCase.KibanaRuleId}");
+                writer.WriteLine($"{useCase.Name};{active};{useCase.MitreAttackId};;{useCase.KibanaRuleId}");
             }
         }
 
