@@ -18,7 +18,7 @@ public class GenerateStateCommand: Command, IExecuteCommand
     public override void Execute()
     {
         var all = Api.GetAllUseCases();
-        var outputFile = UseCaseIOHandler.GenerateStateToFile(all, Input);
+        var outputFile = UseCaseIoHandler.GenerateStateToFile(all, Input);
         Outcome = "State generated to " + outputFile;
     }
 

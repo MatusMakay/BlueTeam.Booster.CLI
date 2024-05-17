@@ -19,7 +19,7 @@ public class UploadUseCasesCommand : Command, IExecuteCommand
     public override void Execute()
     {
         var filePath = Input;
-        var useCasesCreateDto = UseCaseIOHandler.Initialize(filePath);
+        var useCasesCreateDto = UseCaseIoHandler.Initialize(filePath);
 
         var result = Api.CreateUseCases(useCasesCreateDto);
         Outcome = DetailedOutput ? OutcomeBuilder.UseCaseCreatedDetail(useCasesCreateDto) : OutcomeBuilder.UseCaseCreated(useCasesCreateDto);

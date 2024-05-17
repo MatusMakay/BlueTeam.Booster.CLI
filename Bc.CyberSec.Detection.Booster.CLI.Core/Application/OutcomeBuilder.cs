@@ -96,7 +96,7 @@ public static class OutcomeBuilder
     {
         var isActive = dto.IsActive ? "active" : "inactive";
 
-        builder.AppendLine($"{dto.UseCaseIdentifier} is {isActive}. Details:");
+        builder.AppendLine($"UC{dto.UseCaseIdentifier} is {isActive}. Details:");
         builder.AppendLine($"   - Name: {dto.Name}");
         builder.AppendLine($"   - Mitre Attack Id: {dto.MitreAttackId}");
         builder.AppendLine($"   - Kibana Rule Id: {dto.KibanaRuleId}");
@@ -106,7 +106,7 @@ public static class OutcomeBuilder
     private static void AddUseCaseDescription(UseCaseGetDto dto, StringBuilder builder)
     {
         var isActive = dto.IsActive ? "active" : "inactive";
-        builder.AppendLine($"{dto.UseCaseIdentifier} is {isActive}. Name:");
+        builder.AppendLine($"UC{dto.UseCaseIdentifier} is {isActive}. Name:");
         builder.AppendLine($"   - {dto.Name}");
     }
 

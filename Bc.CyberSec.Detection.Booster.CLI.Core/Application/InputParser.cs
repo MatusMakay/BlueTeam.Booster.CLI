@@ -28,6 +28,8 @@ public static class InputParser
         if (string.IsNullOrWhiteSpace(input))
             throw new InvalidDataException("Define use case Ids!");
 
-        return input.Where(c => c != ',' && c != ';' && c != ' ' && c != ':').Select(c => int.Parse(c.ToString())).ToList();
+        var separators = new char[] { ',', ';', ':', ' ' };
+
+        return input.Split(separators).Select(int.Parse).ToList();
     }
 }
